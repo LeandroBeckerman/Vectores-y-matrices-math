@@ -1,0 +1,11 @@
+//AGREGA ESTOS SET EN TU CODIGO SEBA EN LA CLASE MATRIZ Y VECTOR PARA QUE FUNCIONE LA CARGA DE ARCHIIVO QUE HICE
+
+//SET DE MATRIZ
+public void setMatrizMath(int fila,int columna,double elemento){
+		matriz[fila][columna]=elemento;
+	}
+	
+// SET VECTOR	
+	public void setVectorMath(int posicion,double elemento){
+		vector[posicion]=elemento;
+	}
