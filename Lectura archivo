@@ -1,0 +1,54 @@
+package sistemaecuacionlineal;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class LecturaArchivoMath {
+	private File archivoFisico;
+	private FileReader archivoReader;
+	private BufferedReader bf;
+
+	public LecturaArchivoMath(String nombre) {
+		archivoFisico= new File(nombre);
+		try {
+			archivoReader= new FileReader(archivoFisico);
+			bf= new BufferedReader(archivoReader);
+			
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+		public void cargarArchivoMatrizYVector() throws IOException{
+			String linea=bf.readLine();
+			MatrizMath matrizDeCoeficiente=null;
+			VectorMath vectorDeIndependiente=null;
+			try{
+				int orden=Integer.parseInt(linea);
+				matrizDeCoeficiente = new MatrizMath(orden);
+				int cargaFila=0;
+				while(cargaFila<orden){
+					linea=bf.readLine();
+					String arrayLinea[]= linea.split(" ");
+					int row= Integer.parseInt(arrayLinea[0]);
+					int col= Integer.parseInt(arrayLinea[1]);
+					matrizDeCoeficiente.setMatrizMath(row,col,Double.valueOf(arrayLinea[2]));
+					cargaFila++;
+				}
+				vectorDeIndependiente= new VectorMath(orden);
+				int i=0;
+				while((linea=bf.readLine())!=null){
+					vectorDeIndependiente.setVectorMath(i,Double.valueOf(linea));
+					i++;
+				}
+				
+			}
+			catch(NumberFormatException ex){
+				ex.printStackTrace();
+			}
+			
+		}
+}
